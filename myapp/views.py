@@ -7,3 +7,9 @@ def main(request):
     context = {"articles":articles}
     return render(request,"index.html",context)
 
+def article_detail(request,id):
+    article = Article.objects.get(id=id)
+    context = {"article":article}
+    return render(request,"article.html",context)
+
+

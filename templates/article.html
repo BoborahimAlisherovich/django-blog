@@ -8,22 +8,13 @@
     <title>Articles</title>
 </head>
 <body>
-    Maqolalar:
-    <ul>
-        {% for article in articles %}
-        <div class="card" style="width: 18rem;">
-            <img src="{{article.image.url}}" class="card-img-top" alt="{{article.title}}">
-            <div class="card-body">
-                {{article.image.url}}
-              <h5 class="card-title">{{article.title}}</h5>
-              <p class="card-text">{{article.description}}</p>
-              <a href="{%url 'article-detail' article.id %}" class="btn btn-primary">Maqolaga o'tish</a>
-            </div>
-          </div>
-        {% endfor %}
-    </ul> 
 
-    
+    <h1>{{article.title}}</h1>
+    <img src="" alt="{{article.title}}"> 
+    <h5>{{article.description}}</h5>
+
+    <a href="{%url 'articles-list' %}" class="btn btn-primary">Asosiy sahifa</a>
+
 </body>
 </html>
 
