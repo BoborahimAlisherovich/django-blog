@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 class Article(models.Model):
     author = models.ForeignKey(User,on_delete=models.CASCADE)
 
-    id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=200)
     description = models.TextField()
     is_active = models.BooleanField(default=False)
