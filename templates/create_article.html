@@ -35,7 +35,7 @@
 </head>
 <body>
 
-    <form action="/articles/" method="post">
+    <form action="/articles/" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Maqola yaratish">

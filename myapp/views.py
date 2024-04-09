@@ -14,7 +14,16 @@ def article_detail(request,id):
 
 
 def create_article(request):
-    form = ArticleForm()
+    print("---------create----------")
+    if request.method == "POST":
+        form = ArticleForm(request.POST,request.FILES)
+        print("salom")
+        print(form.cleaned_data)
+        # if form.is_valid():
+        #     return HttpResponseRedirect("/thanks/")
+
+    else:
+        form = ArticleForm()
     context = {"form":form}
     
     return render(request,"create_article.html",context)
