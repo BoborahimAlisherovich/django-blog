@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 
 
 class Article(models.Model):
-    author = models.ForeignKey(User,on_delete=models.CASCADE)
 
     title = models.CharField(max_length=200)
     description = models.TextField()
@@ -13,3 +12,10 @@ class Article(models.Model):
     #4ta maydon qo'shish
     def __str__(self) -> str:
         return f"{self.title}"
+
+class Comment(models.Model):
+    first_name = models.CharField(max_length=50)
+    text = models.TextField()
+    create_date = models.DateTimeField(auto_now=True)
+
+    article = models.ForeignKey(Article,on_delete=models.CASCADE)

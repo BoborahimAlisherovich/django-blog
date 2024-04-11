@@ -47,7 +47,13 @@
             <p class="article-meta">{{ article.create_data|date:"F j, Y" }} {{ article.author }}</p>
             <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid my-3"> <!-- Make the image responsive -->
             <p class="article-description">{{ article.description }}</p>
-
+            Izohlar:
+            {% for comment in comments %}
+                <div>
+                    <p style="color: blue; font-weight: bold;">{{ comment.first_name }}</p>
+                    <p style="font-style: italic;">{{ comment.text }}</p>
+                </div>
+            {% endfor %}
             <a href="{% url 'articles-list' %}" class="btn btn-primary back-button">Asosiy sahifa</a>
         </div>
     </div>

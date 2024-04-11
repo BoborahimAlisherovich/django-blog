@@ -1,18 +1,20 @@
 from django.shortcuts import render,HttpResponseRedirect
 #300,301,302
-from .models import Article
+from .models import Article,Comment
 from django.contrib import messages  # new
 from django.urls import reverse  # new
 
 from .forms import ArticleForm
+
 def main(request):
-    articles = Article.objects.all().order_by("-id")
+    articles = Article.objects.filter(is_active=True).order_by("-id")
     context = {"articles":articles}
     return render(request,"index.html",context)
 
 def article_detail(request,id):
     article = Article.objects.get(id=id)
-    context = {"article":article}
+    comments = Comment.objects.filter(article=id)
+    context = {"article":article,"comments":comments}
     return render(request,"article.html",context)
 
 
@@ -24,15 +26,14 @@ def create_article(request):
             title = form.cleaned_data['title']
             description = form.cleaned_data['description']
             image = form.cleaned_data['image']
-            author = request.user
+
             article = Article(
                 title=title,
                 description=description,
                 image=image,
-                author=author  
             )
             article.save()
-            messages.success(request, '🥳 Maqolangiz muvaffaqiyatli tarzda yaratildi.')
+            messages.success(request, '🥳 Maqolangiz adminga yuborildi, tekshiruvdan so\'ng chop etiladi')
             return HttpResponseRedirect(reverse('articles-list'))
         else:
             messages.error(request, 'Formani qaytadan to\'ldiring')
