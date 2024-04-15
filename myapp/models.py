@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+
 class Article(models.Model):
 
     title = models.CharField(max_length=200)
@@ -17,5 +18,9 @@ class Comment(models.Model):
     first_name = models.CharField(max_length=50)
     text = models.TextField()
     create_date = models.DateTimeField(auto_now=True)
+    rating = models.IntegerField()
 
     article = models.ForeignKey(Article,on_delete=models.CASCADE)
+
+
+  
